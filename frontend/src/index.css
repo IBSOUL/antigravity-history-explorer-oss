@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-premium-dark: #0a0a0c;
+  --color-premium-card: #16161a;
+  --color-premium-accent: #6366f1;
+  --color-premium-secondary: #ec4899;
+  --color-premium-text: #e2e8f0;
+  --color-premium-muted: #94a3b8;
+  
+  --background-image-gradient-premium: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+}
+
+@layer base {
+  body {
+    @apply bg-premium-dark text-premium-text font-sans antialiased;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-premium-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full hover:bg-slate-600;
+}
+
+/* Custom Utility Classes */
+.bg-gradient-premium {
+  background-image: var(--background-image-gradient-premium);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.slate.700') theme('colors.premium.dark');
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}

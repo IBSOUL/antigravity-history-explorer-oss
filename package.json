@@ -1,0 +1,14 @@
+{
+  "name": "antigravity-history-explorer",
+  "version": "1.0.0",
+  "description": "Explorador de histórico multiplataforma para Antigravity",
+  "scripts": {
+    "install-all": "npm install --prefix frontend && cargo build --prefix backend",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "start-backend": "cd backend && cargo run",
+    "start-frontend": "cd frontend && npm run dev -- --port 3007 --host"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

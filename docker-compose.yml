@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - ANTIGRAVITY_DATA_DIR=/data
+    volumes:
+      - ${HOME}/.gemini/antigravity:/data
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3007:80"
+    restart: always
+    depends_on:
+      backend:
+        condition: service_healthy
