@@ -1,56 +1,61 @@
 @import "tailwindcss";
 
 @theme {
-  --color-premium-dark: #0a0a0c;
+  --color-premium-dark: #070709;
+  --color-premium-sidebar: #0d0d12;
   --color-premium-card: #16161a;
   --color-premium-accent: #6366f1;
   --color-premium-secondary: #ec4899;
   --color-premium-text: #e2e8f0;
   --color-premium-muted: #94a3b8;
   
-  --background-image-gradient-premium: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  --background-image-gradient-premium: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
 }
 
 @layer base {
   body {
-    @apply bg-premium-dark text-premium-text font-sans antialiased;
+    @apply bg-premium-dark text-premium-text font-sans antialiased selection:bg-indigo-500/30;
   }
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+.scrollbar-premium::-webkit-scrollbar {
+  width: 6px;
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-premium-dark;
+.scrollbar-premium::-webkit-scrollbar-track {
+  @apply bg-transparent;
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full hover:bg-slate-600;
+.scrollbar-premium::-webkit-scrollbar-thumb {
+  @apply bg-slate-800 rounded-full hover:bg-slate-700 transition-colors;
 }
 
-/* Custom Utility Classes */
-.bg-gradient-premium {
-  background-image: var(--background-image-gradient-premium);
+/* Glassmorphism */
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
 }
 
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: theme('colors.slate.700') theme('colors.premium.dark');
+.glass-dark {
+  @apply bg-black/20 backdrop-blur-2xl border border-white/5;
 }
 
-@keyframes bounce-slow {
-  0%, 100% {
-    transform: translateY(-5%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.animate-bounce-slow {
-  animation: bounce-slow 3s infinite;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient Text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400;
+}
+
+/* Transitions */
+.transition-premium {
+  @apply transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1);
 }
